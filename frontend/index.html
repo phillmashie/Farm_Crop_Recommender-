@@ -1,0 +1,43 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farm Crop Recommender</title>
+  </head>
+  <body>
+    <h1>Farm Crop Recommender</h1>
+    <button onclick="getUserProfile('user123')">Get User Profile</button>
+    <button onclick="getRecommendedCrops('user123')">
+      Get Recommended Crops
+    </button>
+    <button onclick="getWeatherData('location123')">Get Weather Data</button>
+
+    <script>
+      async function getUserProfile(userId) {
+        const response = await fetch(
+          `http://127.0.0.1:5000/api/user/profile/${userId}`
+        );
+        const data = await response.json();
+        console.log("User Profile:", data);
+      }
+
+      async function getRecommendedCrops(userId) {
+        const response = await fetch(
+          `http://127.0.0.1:5000/api/crops/recommended/${userId}`
+        );
+        const data = await response.json();
+        console.log("Recommended Crops:", data);
+      }
+
+      async function getWeatherData(location) {
+        const response = await fetch(
+          `http://127.0.0.1:5000/api/environment/weather/${location}`
+        );
+        const data = await response.json();
+        console.log("Weather Data:", data);
+      }
+    </script>
+  </body>
+</html>
